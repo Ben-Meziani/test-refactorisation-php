@@ -29,19 +29,23 @@ class TemplateManagerTest extends TestCase
 
         $quote = new Quote($faker->randomNumber(), $faker->randomNumber(), $faker->randomNumber(), $faker->date());
 
+        $travelTex = 
+
+        $templateText = "
+        Bonjour " . $expectedUser->firstname . ",
+        
+        Merci d'avoir contacté un agent local pour votre voyage " . $expectedDestination->countryName . ".
+        
+        Bien cordialement,
+        
+        L'équipe Evaneos.com
+        www.evaneos.com
+        ";
+
         $template = new Template(
             1,
             'Votre voyage avec une agence locale [quote:destination_name]',
-            "
-                Bonjour [user:first_name],
-
-                Merci d'avoir contacté un agent local pour votre voyage [quote:destination_name].
-
-                Bien cordialement,
-
-                L'équipe Evaneos.com
-                www.evaneos.com
-                "
+            $templateText
         );
         $templateManager = new TemplateManager();
 
@@ -53,15 +57,6 @@ class TemplateManagerTest extends TestCase
         );
 
         $this->assertEquals('Votre voyage avec une agence locale ' . $expectedDestination->countryName, $message->subject);
-        $this->assertEquals("
-Bonjour " . $expectedUser->firstname . ",
-
-Merci d'avoir contacté un agent local pour votre voyage " . $expectedDestination->countryName . ".
-
-Bien cordialement,
-
-L'équipe Evaneos.com
-www.evaneos.com
-", $message->content);
+        $this->assertEquals($templateText, $message->content);
     }
 }
