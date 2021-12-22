@@ -11,6 +11,5 @@ class Template
         $this->id = $id;
         $this->subject = $subject;
         $this->content = $content;
-        var_dump($this->subject);
     }
 }

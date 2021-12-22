@@ -23,11 +23,12 @@ class TemplateManagerTest extends TestCase
     public function test()
     {
         $faker = \Faker\Factory::create();
+        $randonNum = $faker->randomNumber();
 
-        $expectedDestination = DestinationRepository::getInstance()->getById($faker->randomNumber());
+        $expectedDestination = DestinationRepository::getInstance()->getById($randonNum);
         $expectedUser = ApplicationContext::getInstance()->getCurrentUser();
 
-        $quote = new Quote($faker->randomNumber(), $faker->randomNumber(), $faker->randomNumber(), $faker->date());
+        $quote = new Quote($randonNum, $randonNum, $randonNum, $faker->date());
 
         $travelTex = 
 
