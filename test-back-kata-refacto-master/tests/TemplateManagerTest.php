@@ -30,8 +30,6 @@ class TemplateManagerTest extends TestCase
 
         $quote = new Quote($randonNum, $randonNum, $randonNum, $faker->date());
 
-        $travelTex = 
-
         $templateText = "
         Bonjour " . $expectedUser->firstname . ",
         
